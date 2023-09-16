@@ -1,7 +1,5 @@
 const express = require('express');
 const { request } = require('http');
-const { DataTypes } = require('sequelize');
-const { roles } = require('../../config');
 const auth_route = require('./authorize/auth_routes');
 const general_user_route = require('./general_users/general_user_route');
 const login_route = require('./user_login/login_route');
@@ -9,32 +7,6 @@ const login_route = require('./user_login/login_route');
 app.use('/auth', auth_route);
 app.use('/all', general_user_route);
 app.use('/home', login_route);
-
-const UserModel = {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
-
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-
-    role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-}
-
 
 const app = express();
 app.use(express.json());
